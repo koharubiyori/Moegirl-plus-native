@@ -94,7 +94,7 @@ object HmoeSplashImageManager {
             .build()
           val res = try {
             moeOkHttpClient.newCall(request).execute()
-          } catch (e: CommonRequestException) {
+          } catch (e: Exception) {
             printRequestErr(e, "H萌娘：启动屏图片下载失败：$imageUrl")
             return@launch
           }

@@ -90,8 +90,6 @@ import my.google.accompanist.navigation.animation.AnimatedNavHost
 @InternalCoroutinesApi
 @ExperimentalComposeUiApi
 class MainActivity : ComponentActivity() {
-  val coroutineScope = CoroutineScope(Dispatchers.Main)
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Globals.context = applicationContext

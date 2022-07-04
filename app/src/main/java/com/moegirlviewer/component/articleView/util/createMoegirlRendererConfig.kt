@@ -1,6 +1,7 @@
 package com.moegirlviewer.component.articleView.util
 
 import com.google.gson.Gson
+import com.moegirlviewer.Constants
 
 fun createMoegirlRendererConfig(
   pageName: String? = null,
@@ -22,33 +23,12 @@ fun createMoegirlRendererConfig(
     moegirl.config.hostScrollMode.onResize = height => _postMessage('pageHeightChange', { value: height })
   """.trimIndent()
 
-//  val preProcessCodes = """
-//    ;(() => {
-//      const commonUrlRegex = ${if (site == "moegirl")
-//        """/https:\/\/img\.moegirl\.org\.cn\/common\//g""" else
-//        """/https:\/\/www\.hmoegirl\.com\/thumb\.php/g"""
-//      }
-//      const replaceToProxyUrl = (url) => '/commonRes/' + encodeURIComponent(url)
-//      ${'$'}('body')
-//        .find('source, img').each(function() {
-//          const src = ${'$'}(this).attr('src') || ''
-//          const srcset = ${'$'}(this).attr('srcset') || ''
-//          commonUrlRegex.lastIndex = 0
-//          const srcTestResult = commonUrlRegex.test(src)
-//          commonUrlRegex.lastIndex = 0
-//          const srcsetTestResult = commonUrlRegex.test(srcset)
-//          if (!srcTestResult && !srcsetTestResult) { return }
-//          if (src !== '') ${'$'}(this).attr('src', replaceToProxyUrl(src))
-//          if (srcset !== '') ${'$'}(this).attr('srcset', replaceToProxyUrl(srcset))
-//        })
-//    })()
-//  """.trimIndent()
-
   return """
     moegirl.data.pageName = ${Gson().toJson(pageName)}
     moegirl.data.language = '$language'
     moegirl.data.site = '$site'
     moegirl.data.pageType = '${if (isTalkPage) "talk" else "article"}'
+    moegirl.data.mainUrl = '${Constants.mainUrl}'
     moegirl.config.heimu.${'$'}enabled = $heimu
     moegirl.config.addCopyright.enabled = $addCopyright
     moegirl.config.nightTheme.${'$'}enabled = $nightMode

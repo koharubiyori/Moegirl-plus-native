@@ -293,6 +293,26 @@ fun SettingsScreen() {
 //          }
 //        )
 //      }
+      fun toggleStraightConnectMode() {
+        setSettingItem { this.straightConnectMode = !this.straightConnectMode }
+        needExitProcessOnExitApp = true
+        toast(Globals.context.getString(R.string.becomeEffectiveInRestartAPP))
+      }
+      SettingsScreenItem(
+        title = stringResource(id = R.string.straightConnectMode),
+        subtext = stringResource(id = R.string.straightConnectModeHelpText),
+        onClick = {
+          toggleStraightConnectMode()
+        }
+      ) {
+        Switch(
+          checked = commonSettings.straightConnectMode,
+          colors = switchColors,
+          onCheckedChange = {
+            toggleStraightConnectMode()
+          }
+        )
+      }
       SettingsScreenItem(
         title = stringResource(id = R.string.privacyPolicy),
         onClick = {

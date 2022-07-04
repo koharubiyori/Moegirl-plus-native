@@ -19,6 +19,7 @@ import com.moegirlviewer.component.styled.StyledText
 import com.moegirlviewer.screen.drawer.CommonDrawerState
 import com.moegirlviewer.theme.text
 import com.moegirlviewer.util.Globals
+import com.moegirlviewer.util.exitApp
 import com.moegirlviewer.util.noRippleClickable
 import kotlinx.coroutines.launch
 
@@ -73,7 +74,7 @@ fun CommonDrawerFooter(
         .weight(1f)
         .fillMaxHeight()
         .noRippleClickable {
-          Globals.activity.finishAndRemoveTask()
+          exitApp()
         },
       horizontalArrangement = Arrangement.Center,
       verticalAlignment = Alignment.CenterVertically

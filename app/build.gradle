@@ -115,7 +115,7 @@ dependencies {
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
-    def accompanist_version = '0.24.10-beta'
+    def accompanist_version = '0.24.13-rc'
     // 由于这个库没有提供修改页面层级的参数，需要修改源码，这里将源码复制到项目中了
 //    implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"

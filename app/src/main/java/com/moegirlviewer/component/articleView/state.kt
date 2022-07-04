@@ -16,6 +16,7 @@ import com.moegirlviewer.api.page.bean.PageInfoResBean
 import com.moegirlviewer.component.articleView.util.collectCategoryDataFromHtml
 import com.moegirlviewer.component.articleView.util.createDefaultMessageHandlers
 import com.moegirlviewer.component.articleView.util.createMoegirlRendererConfig
+import com.moegirlviewer.component.articleView.util.preProcessArticleHtml
 import com.moegirlviewer.component.htmlWebView.HtmlWebViewContent
 import com.moegirlviewer.component.htmlWebView.HtmlWebViewMessageHandlers
 import com.moegirlviewer.component.htmlWebView.HtmlWebViewRef
@@ -120,7 +121,6 @@ class ArticleViewStateCore() {
   suspend fun updateHtmlView(force: Boolean = false) {
     if (isInitialized && !force) { return }
 
-    printDebugLog(SettingsStore.common.getValue { this.hideTopTemplates }.first())
     val moegirlRendererConfig = createMoegirlRendererConfig(
       pageName = pageName,
       language = if(isTraditionalChineseEnv()) "zh-hant" else "zh-hans",
@@ -211,11 +211,12 @@ class ArticleViewStateCore() {
       moegirlRendererConfig,
       *(injectedScripts ?: emptyList()).toTypedArray(),
     )
+    val preProcessedArticleHtml = preProcessArticleHtml(articleHtml)
 
 //    val imageProxyArticleHtml = articleHtml.imageProxy()
     htmlWebViewRef.value?.updateContent?.invoke {
       HtmlWebViewContent(
-        body = articleHtml,
+        body = preProcessedArticleHtml,
         title = pageName,
         injectedStyles = injectedStyles,
         injectedScripts = injectedScripts,

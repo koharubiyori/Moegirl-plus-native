@@ -18,6 +18,7 @@ import com.moegirlviewer.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlin.system.exitProcess
 
 @HiltViewModel
 class HomeScreenModel @Inject constructor() : ViewModel() {
@@ -46,7 +47,7 @@ class HomeScreenModel @Inject constructor() : ViewModel() {
         twoPressBackFlag = false
       }
     } else {
-      Globals.activity.finishAndRemoveTask()
+      exitApp()
     }
   }
 
@@ -62,6 +63,7 @@ class HomeScreenModel @Inject constructor() : ViewModel() {
       { recommendationCardState.reload() },
     )
 
+    // 因为用移动端域名绕过了waf，暂时注释掉
 //    if (isMoegirl()) {
 //      // 萌百不能用并发，会导致被waf
 //      try {

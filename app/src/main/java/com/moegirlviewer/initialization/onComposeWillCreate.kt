@@ -16,6 +16,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.node.Ref
 import androidx.navigation.NavHostController
+import coil.ImageLoaderFactory
 import coil.compose.LocalImageLoader
 import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder

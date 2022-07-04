@@ -20,9 +20,7 @@ import com.moegirlviewer.Constants
 import com.moegirlviewer.DataSource
 import com.moegirlviewer.R
 import com.moegirlviewer.screen.article.ArticleRouteArguments
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.internal.toHexString
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -33,6 +31,7 @@ import java.security.MessageDigest
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.system.exitProcess
 
 @Target(AnnotationTarget.CLASS)
 annotation class ProguardIgnore

@@ -1,5 +1,9 @@
 package com.moegirlviewer
 
+import com.moegirlviewer.store.SettingsStore
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+
 class SourceConstants(
   val source: DataSource,
   val domain: String,
@@ -20,6 +24,14 @@ object CrossWikiUrlPrefix {
   const val moegirl = "$moegirlMainUrl/"
 }
 
+private val isStraightConnectMode = if (BuildConfig.FLAVOR_source == "hmoe") runBlocking {
+  SettingsStore.common.getValue { straightConnectMode }.first()
+} else false
+
+private val hmoeMainUrl = if (isStraightConnectMode)
+  "https://hmoe-relay.koharu.top" else
+  "https://m.hmoegirl.com"
+
 private val sourceConstants = when (BuildConfig.FLAVOR_source) {
   "moegirl" -> SourceConstants(
     source = DataSource.MOEGIRL,
@@ -38,9 +50,9 @@ private val sourceConstants = when (BuildConfig.FLAVOR_source) {
   "hmoe" -> SourceConstants(
     source = DataSource.HMOE,
     domain = "https://hmoegirl.com",
-    mainUrl = "https://m.hmoegirl.com",
+    mainUrl = hmoeMainUrl,
     mainPageUrl = "https://m.hmoegirl.com/Mainpage",
-    apiUrl = "https://m.hmoegirl.com/api.php",
+    apiUrl = "$hmoeMainUrl/api.php",
     avatarUrl = "https://m.hmoegirl.com/extensions/Avatar/avatar.php?user=",
     shareUrl = "https://m.hmoegirl.com/index.php?curid=",
     registerUrl = "https://m.hmoegirl.com/index.php?title=%E7%89%B9%E6%AE%8A:%E5%88%9B%E5%BB%BA%E8%B4%A6%E6%88%B7&returnto=Mainpage",
@@ -66,7 +78,8 @@ object Constants {
   val disclaimerPageName = sourceConstants.disclaimerPageName
   val privacyPageName = sourceConstants.privacyPageName
 
-  val topAppBarHeight = 56
+  val straightConnectMode = isStraightConnectMode
+  const val topAppBarHeight = 56
   val targetStore = if (BuildConfig.FLAVOR_targetStore == "common")
     TargetStore.COMMON else TargetStore.FDROID
 }

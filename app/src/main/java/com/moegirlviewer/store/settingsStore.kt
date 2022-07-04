@@ -32,6 +32,7 @@ data class CommonSettings(
   var lightRequestMode: Boolean = false,  // 轻请求模式，这个选项主要作用是减少请求数，将一些预加载的东西改为点击时才加载。现在这个选项的ui已经隐藏，默认为开启
   var focusMode: Boolean = false,
   var hideTopTemplates: Boolean = false,
+  var straightConnectMode: Boolean = false,   // 直连模式，只有hmoe会用到，不过哪天萌百也要用了也说不定
 ) : Settings()
 
 // 最近更改右上角按钮打开的设置

@@ -215,6 +215,8 @@
     <string name="searchInSite">站内搜索</string>
     <string name="moreTopicBlock">更多主题板块</string>
     <string name="hideTopTemplates">隐藏置顶模板</string>
+    <string name="straightConnectMode">直连模式</string>
+    <string name="becomeEffectiveInRestartAPP">重启APP后生效</string>
 
     <!-- 其他（变量名与文字不对等，需要先确认内容） -->
     <string name="colorTextPlaceholder">颜色|文字</string>
@@ -336,6 +338,7 @@
     <string name="multiRevisionHint">未显示%1$s编辑者的%2$s个中间版本</string>
     <string name="multiRevisionHint_same">同一</string>
     <string name="multiRevisionHint_number">%1$s位</string>
+    <string name="straightConnectModeHelpText">用这个推倒GFW娘吧，不过好像并不稳定呢</string>
 
     <!-- 特殊 -->
     <string name="comparesummaryPrefix">撤销[[Special:Contributions/%1$s|%1$s]]（[[User_talk:%1$s|讨论]]）的版本%2$s</string>
